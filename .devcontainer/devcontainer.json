@@ -1,0 +1,35 @@
+{
+
+  
+    "name": "personal_proj",
+    
+  
+    // Dockerfile 기반으로 컨테이너 이미지 빌드
+    "build": {
+      "dockerfile": "../Dockerfile",
+      "context": ".."
+    },
+  
+    // 컨테이너 안에서 VS Code가 열 워크스페이스 폴더
+    "workspaceFolder": "/workspace",
+  
+    // 컨테이너 종료 시 Docker 컨테이너도 함께 내리기
+    "shutdownAction": "stopContainer",
+  
+    // VS Code 전용 커스터마이징: 확장 설치, 설정, 포스트 명령
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-azuretools.vscode-docker",
+          "dbaeumer.vscode-eslint",
+          "esbenp.prettier-vscode"
+        ],
+        "settings": {
+          "terminal.integrated.shell.linux": "/bin/bash"
+        }
+      }
+    },
+  
+    // 컨테이너 생성 후 자동 실행할 명령 (필요 없으면 빈 문자열로)
+    "postCreateCommand": ""
+  }

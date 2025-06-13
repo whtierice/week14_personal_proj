@@ -1,0 +1,33 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Node.js dependencies (npm, yarn, pnpm 등)  
+node_modules/
+
+# 환경변수 파일
+# .env          기본 env
+# .env.local    로컬 개발 시 덮어쓰기용
+# .env.*.local  .env.development.local, .env.test.local 등
+.env*
+  
+# 빌드 아티팩트
+# Nest.js 로는 dist/, React 로는 build/ 디렉터리
+dist/
+build/
+
+# 테스트 커버리지 리포트
+coverage/
+
+# 로그 파일
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Mac/macOS 메타파일
+.DS_Store
+
+# VSCode 관련 캐시·설정
+.vscode/
+.vscode-server/
+
+# IDE (WebStorm, IntelliJ 등) 설정 파일
+.idea/
+*.code-workspace
