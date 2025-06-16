@@ -1,38 +1,297 @@
+/* 전역 스타일 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* 메인 앱 컨테이너 */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  background-color: #000000;
+  padding-bottom: 70px;
+}
+
+/* 헤더 스타일 */
+.App-header {
+  background-color: #000000;
+  padding: 15px;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #00D982; /* Jungle 초록색 */
+  font-weight: 700;
+}
+
+.App-header p {
+  margin: 5px 0 0 0;
+  font-size: 0.9rem;
+  color: #888888;
+}
+
+/* 메인 콘텐츠 영역 */
+main {
+  padding: 20px 15px;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 140px);
+}
+
+/* 하단 네비게이션 스타일 */
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0a0a0a;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  z-index: 1000;
+}
+
+.nav-item {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-decoration: none;
+  color: #666666;
+  padding: 8px;
+  transition: color 0.3s;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-item.active {
+  color: #00D982;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-item.active .nav-icon {
+  transform: scale(1.1);
+}
+
+.nav-icon {
+  font-size: 24px;
+  margin-bottom: 4px;
+  transition: transform 0.2s;
+}
+
+.nav-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 페이지 스타일 */
+.home-page h2, .exercise-page h2, .board-page h2 {
+  color: #00D982;
+  margin-bottom: 10px;
+}
+
+.home-page p, .exercise-page p, .board-page p {
+  color: #888888;
+  margin-bottom: 20px;
+}
+
+/* 기능 카드 스타일 */
+.feature-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.feature-card {
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.feature-card h3 {
+  color: #00D982;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  color: #cccccc;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 운동 폼 스타일 */
+.exercise-form {
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.exercise-form h3 {
+  margin-top: 0;
+  color: #00D982;
+  font-size: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #cccccc;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: left;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  background: #000000;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #ffffff;
+  -webkit-appearance: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #00D982;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #666666;
+}
+
+/* 버튼 스타일 */
+.submit-btn {
+  background-color: #00D982;
+  color: #000000;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #00C474;
+  transform: translateY(-1px);
+}
+
+/* 홈 페이지 - 루틴 스타일 */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-routine-btn {
+  background: none;
+  border: 1px solid #00D982;
+  color: #00D982;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-routine-btn:hover {
+  background: #00D982;
+  color: #000000;
+}
+
+/* 루틴 목록 */
+.routine-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.routine-item {
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.routine-item:hover {
+  border-color: #00D982;
+  transform: translateX(4px);
+}
+
+.routine-content {
+  flex: 1;
+  text-align: left;
+}
+
+.routine-name {
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.routine-last-completed {
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.routine-arrow {
+  color: #00D982;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.empty-routine {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666666;
+}
+
+.empty-routine p {
+  margin: 10px 0;
+}
+
+.empty-routine p:first-child {
+  font-size: 18px;
+  color: #888888;
 }
