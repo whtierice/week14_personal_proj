@@ -4,8 +4,10 @@ import './App.css';
 // import Header from './components/Layout/Header';
 import Navigation from './components/Layout/Navigation';
 import HomePage from './pages/HomePage';
-import ExercisePage from './pages/ExercisePage';
+// import ExercisePage from './pages/ExercisePage';
+import RecordsPage from './pages/RecordsPage';
 import BoardPage from './pages/BoardPage';
+import RoutineDetailPage from './pages/RoutineDetailPage';
 
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/exercise" element={<ExercisePage />} />
+            <Route path="/records" element={<RecordsPage />} />
             <Route path="/board" element={<BoardPage />} />
           </Routes>
         </main>

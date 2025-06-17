@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Routine } from '../types';
 import RoutineList from '../components/Routine/RoutineList';
 
+
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   
