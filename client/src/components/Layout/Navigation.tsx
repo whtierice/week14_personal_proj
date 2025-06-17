@@ -20,11 +20,11 @@ const Navigation: React.FC = () => {
       </Link>
       
       <Link 
-        to="/exercise" 
-        className={`nav-item ${isActive('/exercise') ? 'active' : ''}`}
+        to="/records" 
+        className={`nav-item ${isActive('/records') ? 'active' : ''}`}
       >
-        <span className="nav-icon">💪</span>
-        <span className="nav-label">운동</span>
+        <span className="nav-icon">📊</span>
+        <span className="nav-label">기록</span>
       </Link>
       
       <Link 

@@ -295,3 +295,259 @@ main {
   font-size: 18px;
   color: #888888;
 }
+
+/* 루틴 상세 페이지 */
+.routine-detail-page {
+  padding: 20px 0;
+}
+
+.routine-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.routine-header h2 {
+  flex: 1;
+  margin: 0;
+  color: #ffffff;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #00D982;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.routine-exercises h3 {
+  color: #00D982;
+  margin-bottom: 20px;
+}
+
+.exercise-preview {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.exercise-number {
+  width: 30px;
+  height: 30px;
+  background: #00D982;
+  color: #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.exercise-info h4 {
+  margin: 0 0 5px 0;
+  color: #ffffff;
+}
+
+.exercise-info p {
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.start-workout-btn {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  right: 20px;
+  background: #00D982;
+  color: #000000;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 운동 진행 중 */
+.workout-in-progress {
+  padding: 20px 0;
+}
+
+.workout-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.workout-timer {
+  font-size: 36px;
+  color: #00D982;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #00D982;
+  transition: width 0.3s;
+}
+
+.progress-text {
+  text-align: center;
+  color: #666666;
+  margin-bottom: 30px;
+}
+
+.exercise-list-workout {
+  margin-bottom: 100px;
+}
+
+.exercise-item-workout {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.exercise-item-workout.completed {
+  border-color: #00D982;
+  opacity: 0.7;
+}
+
+.exercise-check {
+  font-size: 24px;
+  color: #00D982;
+}
+
+.exercise-content h4 {
+  margin: 0 0 5px 0;
+  color: #ffffff;
+}
+
+.exercise-content p {
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.workout-actions {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.finish-workout-btn {
+  flex: 1;
+  background: #00D982;
+  color: #000000;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.finish-workout-btn:disabled {
+  background: #1a1a1a;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.cancel-workout-btn {
+  background: #1a1a1a;
+  color: #ff4444;
+  border: 1px solid #2a2a2a;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 기록 페이지 */
+.records-page h2 {
+  color: #00D982;
+  margin-bottom: 20px;
+}
+
+.records-list {
+  margin-bottom: 80px;
+}
+
+.record-group {
+  margin-bottom: 30px;
+}
+
+.record-date {
+  color: #00D982;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.record-item {
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.record-header h4 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.record-duration {
+  color: #00D982;
+  font-size: 14px;
+}
+
+.progress-bar-small {
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.progress-fill-small {
+  height: 100%;
+  background: #00D982;
+}
+
+.completion-text {
+  color: #666666;
+  font-size: 12px;
+}

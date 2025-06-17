@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Routine } from '../types';
 import RoutineList from '../components/Routine/RoutineList';
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+  
   // 샘플 루틴 데이터 (나중에 실제 데이터로 교체)
   const [routines, setRoutines] = useState<Routine[]>([
     {
@@ -36,8 +39,8 @@ const HomePage: React.FC = () => {
   ]);
 
   const handleSelectRoutine = (routine: Routine) => {
-    // TODO: 루틴 상세 페이지로 이동 또는 운동 시작
-    console.log('Selected routine:', routine);
+    // 루틴 상세 페이지로 이동
+    navigate(`/routine/${routine.id}`);
   };
 
   return (
