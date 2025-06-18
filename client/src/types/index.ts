@@ -28,6 +28,9 @@ export interface Routine {
     createdAt: string;       // 작성 시간
     updatedAt?: string;      // 수정 시간 (선택사항)
     comments: Comment[];     // 댓글 배열
+    imageUrl?: string;       // 이미지 URL (선택사항)
+    likes?: number;          // 좋아요 수 (선택사항)
+    liked?: boolean;         // 현재 사용자가 좋아요 했는지 여부 (선택사항)
   }
   
   // 댓글 타입

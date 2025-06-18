@@ -1,14 +1,29 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { postApi } from '../api';
 import { Post, Comment } from '../types';
 import { CreatePostDto, UpdatePostDto, CreateCommentDto, PaginatedResponse } from '../api/types';
 
 // 게시글 목록 조회 훅
-export const usePosts = (page: number = 1, limit: number = 10) => {
+export const usePosts = (page: number = 1, limit: number = 12) => {
   return useQuery<PaginatedResponse<Post>, Error>({
     queryKey: ['posts', page, limit],
     queryFn: () => postApi.getAll(page, limit),
     placeholderData: (previousData) => previousData, // 페이지 전환 시 이전 데이터 유지
+  });
+};
+
+// 무한 스크롤용 게시글 목록 조회 훅
+export const useInfinitePosts = (limit: number = 12) => {
+  return useInfiniteQuery<PaginatedResponse<Post>, Error>({
+    queryKey: ['posts', 'infinite'],
+    queryFn: ({ pageParam }) => postApi.getAll(pageParam as number, limit),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      if (lastPage.page < lastPage.totalPages) {
+        return lastPage.page + 1;
+      }
+      return undefined;
+    },
   });
 };
 
@@ -62,11 +77,27 @@ export const useDeletePost = () => {
   });
 };
 
+// 게시글 좋아요 훅
+export const useLikePost = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation<Post, Error, string>({
+    mutationFn: (postId) => postApi.likePost(postId),
+    onSuccess: (updatedPost) => {
+      // 성공 시 해당 게시글 캐시 업데이트
+      queryClient.setQueryData(['posts', updatedPost.id], updatedPost);
+      
+      // 목록에서도 좋아요 상태 업데이트
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+    },
+  });
+};
+
 // 댓글 목록 조회 훅
-export const useComments = (postId: string) => {
+export const useComments = (postId: string, page: number = 1, limit: number = 10) => {
   return useQuery<Comment[], Error>({
-    queryKey: ['posts', postId, 'comments'],
-    queryFn: () => postApi.getComments(postId),
+    queryKey: ['posts', postId, 'comments', page, limit],
+    queryFn: () => postApi.getComments(postId, page, limit),
     enabled: !!postId, // postId가 있을 때만 쿼리 실행
   });
 };

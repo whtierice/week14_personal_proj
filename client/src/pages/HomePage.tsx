@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Routine } from '../types';
 import RoutineList from '../components/Routine/RoutineList';
-import { useRoutines, useCreateRoutine } from '../hooks/useRoutines';
-import { CreateRoutineDto } from '../api/types';
+import { useRoutines } from '../hooks/useRoutines';
+import RoutineForm from '../components/Routine/RoutineForm';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
-  const [newRoutineName, setNewRoutineName] = useState('');
   
   // React Query 훅 사용
   const { 
@@ -17,32 +16,22 @@ const HomePage: React.FC = () => {
     error,
     refetch 
   } = useRoutines();
-  
-  const createRoutineMutation = useCreateRoutine();
 
   const handleSelectRoutine = (routine: Routine) => {
     // 루틴 상세 페이지로 이동
     navigate(`/routine/${routine.id}`);
   };
 
-  const handleCreateRoutine = () => {
-    if (!newRoutineName.trim()) return;
-    
-    const newRoutine: CreateRoutineDto = {
-      name: newRoutineName,
-      exercises: []
-    };
-    
-    createRoutineMutation.mutate(newRoutine, {
-      onSuccess: () => {
-        setNewRoutineName('');
-        setShowForm(false);
-      }
-    });
+  // 폼 취소
+  const handleFormCancel = () => {
+    setShowForm(false);
   };
   
-  // mutation 상태 확인
-  const isPending = createRoutineMutation.isPending;
+  // 폼 성공
+  const handleFormSuccess = () => {
+    setShowForm(false);
+    refetch(); // 데이터 다시 불러오기
+  };
 
   // 로딩 상태 처리
   if (isLoading) {
@@ -66,44 +55,27 @@ const HomePage: React.FC = () => {
       </div>
     );
   }
+  
+  // 루틴 생성 폼 표시
+  if (showForm) {
+    return (
+      <RoutineForm 
+        onCancel={handleFormCancel}
+        onSuccess={handleFormSuccess}
+      />
+    );
+  }
 
   return (
     <div className="home-page">
       <div className="home-header">
         <h2>내 루틴</h2>
-        {!showForm ? (
-          <button 
-            className="add-routine-btn"
-            onClick={() => setShowForm(true)}
-          >
-            + 새 루틴
-          </button>
-        ) : (
-          <div className="routine-form">
-            <input
-              type="text"
-              value={newRoutineName}
-              onChange={(e) => setNewRoutineName(e.target.value)}
-              placeholder="루틴 이름"
-              autoFocus
-            />
-            <div className="form-buttons">
-              <button 
-                onClick={handleCreateRoutine}
-                disabled={isPending}
-                className="create-btn"
-              >
-                {isPending ? '생성 중...' : '생성'}
-              </button>
-              <button 
-                onClick={() => setShowForm(false)}
-                className="cancel-btn"
-              >
-                취소
-              </button>
-            </div>
-          </div>
-        )}
+        <button 
+          className="add-routine-btn"
+          onClick={() => setShowForm(true)}
+        >
+          + 새 루틴
+        </button>
       </div>
       
       {routines && routines.length > 0 ? (

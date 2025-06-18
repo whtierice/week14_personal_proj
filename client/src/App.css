@@ -1,6 +1,7 @@
 /* 스타일 임포트 */
 @import './styles/auth.css';
 @import './styles/board.css';
+@import './styles/routine.css';
 
 /* 전역 스타일 */
 * {

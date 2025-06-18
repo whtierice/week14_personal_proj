@@ -5,7 +5,7 @@ import { ApiResponse, CreatePostDto, UpdatePostDto, CreateCommentDto, PaginatedR
 // 게시판 관련 API 함수
 export const postApi = {
   // 모든 게시글 가져오기 (페이지네이션)
-  getAll: async (page: number = 1, limit: number = 10): Promise<PaginatedResponse<Post>> => {
+  getAll: async (page: number = 1, limit: number = 12): Promise<PaginatedResponse<Post>> => {
     const response = await apiClient.get<ApiResponse<PaginatedResponse<Post>>>(`/posts?page=${page}&limit=${limit}`);
     return response.data.data;
   },
@@ -33,9 +33,17 @@ export const postApi = {
     await apiClient.delete(`/posts/${id}`);
   },
   
-  // 게시글의 모든 댓글 가져오기
-  getComments: async (postId: string): Promise<Comment[]> => {
-    const response = await apiClient.get<ApiResponse<Comment[]>>(`/posts/${postId}/comments`);
+  // 게시글 좋아요
+  likePost: async (id: string): Promise<Post> => {
+    const response = await apiClient.post<ApiResponse<Post>>(`/posts/${id}/like`);
+    return response.data.data;
+  },
+  
+  // 게시글의 모든 댓글 가져오기 (페이지네이션)
+  getComments: async (postId: string, page: number = 1, limit: number = 10): Promise<Comment[]> => {
+    const response = await apiClient.get<ApiResponse<Comment[]>>(
+      `/posts/${postId}/comments?page=${page}&limit=${limit}`
+    );
     return response.data.data;
   },
   
