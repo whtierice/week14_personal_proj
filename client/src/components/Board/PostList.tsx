@@ -32,30 +32,30 @@ const PostList: React.FC<PostListProps> = ({ posts, onSelectPost }) => {
     <div className="post-list">
       <h3>게시글 목록 ({posts.length}개)</h3>
       
-      <div className="posts-container">
+      <div className="posts-grid">
         {posts.map(post => (
           <div 
             key={post.id} 
-            className="post-item"
+            className="post-card"
             onClick={() => onSelectPost(post)}
           >
-            <div className="post-header">
+            {post.imageUrl ? (
+              <div className="post-image">
+                <img src={post.imageUrl} alt={post.title} />
+              </div>
+            ) : (
+              <div className="post-no-image">
+                <span className="post-title-preview">{post.title}</span>
+              </div>
+            )}
+            
+            <div className="post-info">
               <h4>{post.title}</h4>
               <span className="post-meta">
                 {post.author} · {formatDate(post.createdAt)}
               </span>
-            </div>
-            
-            <p className="post-preview">
-              {post.content.length > 100 
-                ? `${post.content.substring(0, 100)}...` 
-                : post.content
-              }
-            </p>
-            
-            <div className="post-footer">
               <span className="comment-count">
-                💬 댓글 {post.comments.length}개
+                💬 {post.comments.length}
               </span>
             </div>
           </div>

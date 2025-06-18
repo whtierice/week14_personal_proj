@@ -11,7 +11,13 @@ const HomePage: React.FC = () => {
   const [newRoutineName, setNewRoutineName] = useState('');
   
   // React Query 훅 사용
-  const { data: routines, isLoading, error } = useRoutines();
+  const { 
+    data: routines, 
+    isLoading, 
+    error,
+    refetch 
+  } = useRoutines();
+  
   const createRoutineMutation = useCreateRoutine();
 
   const handleSelectRoutine = (routine: Routine) => {
@@ -55,7 +61,7 @@ const HomePage: React.FC = () => {
       <div className="home-page">
         <div className="error-state">
           <p>루틴 목록을 불러오는데 실패했습니다.</p>
-          <button onClick={() => window.location.reload()}>다시 시도</button>
+          <button onClick={() => refetch()}>다시 시도</button>
         </div>
       </div>
     );
@@ -85,19 +91,32 @@ const HomePage: React.FC = () => {
               <button 
                 onClick={handleCreateRoutine}
                 disabled={isPending}
+                className="create-btn"
               >
                 {isPending ? '생성 중...' : '생성'}
               </button>
-              <button onClick={() => setShowForm(false)}>취소</button>
+              <button 
+                onClick={() => setShowForm(false)}
+                className="cancel-btn"
+              >
+                취소
+              </button>
             </div>
           </div>
         )}
       </div>
       
-      <RoutineList 
-        routines={routines || []}
-        onSelectRoutine={handleSelectRoutine}
-      />
+      {routines && routines.length > 0 ? (
+        <RoutineList 
+          routines={routines}
+          onSelectRoutine={handleSelectRoutine}
+        />
+      ) : (
+        <div className="empty-routine">
+          <p>아직 생성된 루틴이 없습니다</p>
+          <p>첫 루틴을 만들어보세요!</p>
+        </div>
+      )}
     </div>
   );
 };
