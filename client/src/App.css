@@ -1,3 +1,6 @@
+/* 인증 관련 스타일 임포트 */
+@import './styles/auth.css';
+
 /* 전역 스타일 */
 * {
   box-sizing: border-box;
